@@ -1,3 +1,5 @@
+from config import BUFFER_SIZE
+
 class Buffer:
     def __init__(self):
         self.data = []
@@ -6,9 +8,9 @@ class Buffer:
         for x in args:
             if isinstance(x, (int, float)):
                 self.data.append(x)
-                if len(self.data) >= 5:
-                    result = sum(self.data[:5])
-                    self.data = self.data[5:]
+                if len(self.data) >= BUFFER_SIZE:
+                    result = sum(self.data[:BUFFER_SIZE])
+                    self.data = self.data[BUFFER_SIZE:]
                     return result
         return None
 

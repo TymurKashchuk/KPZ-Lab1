@@ -2,7 +2,6 @@ from validators import validate_name, validate_email
 
 class User:
     def __init__(self, first_name, last_name, email, nickname, newsletter):
-        # ✅ Кожен параметр валідуємо окремо через нові валідатори
         self.first_name = validate_name(first_name, "Ім'я", 1)
         self.last_name = validate_name(last_name, "Прізвище", 1)
         self.email = validate_email(email)

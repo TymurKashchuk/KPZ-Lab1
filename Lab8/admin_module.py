@@ -8,11 +8,8 @@ class Privileges:
 
     def show_privileges(self):
         if self.privileges:
-            print("Привілеї адміністратора:")
-            for p in self.privileges:
-                print(f"- {p}")
-        else:
-            print("Привілеї не задані")
+            return "Привілеї адміністратора:\n" + "\n".join(f"- {p}" for p in self.privileges)
+        return "Привілеї не задані"
 
 
 class Admin(User):

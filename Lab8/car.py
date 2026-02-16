@@ -1,4 +1,4 @@
-from .validators import validate_string_no_digits, validate_year
+from validators import validate_string_no_digits, validate_year
 
 class Car:
     def __init__(self, make,model, year):
@@ -12,7 +12,7 @@ class Car:
         return self.__speed
 
     def brake(self):
-        self.__speed -= 5
+        self.__speed = max(0, self.__speed - 5)
         return self.__speed
 
     def get_speed(self):

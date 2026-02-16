@@ -1,52 +1,44 @@
 class Shop:
-    def __init__(self,shop_name,store_type):
+    def __init__(self, shop_name, store_type):
         if not isinstance(shop_name, str) or not shop_name.strip():
-            print("Назва магазину повинна бути непорожнім рядком")
-            return
-
+            raise ValueError("Назва магазину: непорожній рядок")
         if not isinstance(store_type, str) or not store_type.strip():
-            print("Тип магазину повинен бути непорожнім рядком")
-            return
+            raise ValueError("Тип магазину: непорожній рядок")
 
-        self.shop_name = shop_name
-        self.store_type = store_type
+        self.shop_name = shop_name.strip()
+        self.store_type = store_type.strip()
         self.number_of_units = 0
 
     def describe_shop(self):
-        print(f"Назва магазину: {self.shop_name}, Тип магазину: {self.store_type}")
+        return f"Назва: {self.shop_name}, Тип: {self.store_type}"
 
     def open_shop(self):
-        print(f"Онлайн-магазин '{self.shop_name}' відкритий!")
+        return f"Магазин '{self.shop_name}' відкритий!"
 
     def set_number_of_units(self, number):
         if not isinstance(number, int) or number < 0:
-            print("Кількість товарів має бути невід’ємним цілим числом")
-            return
+            raise ValueError("Кількість товарів: невід'ємне ціле")
         self.number_of_units = number
+        return self.number_of_units
 
-    def increment_number_of_units(self,increment):
+    def increment_number_of_units(self, increment):
         if not isinstance(increment, int) or increment < 0:
-            print("Збільшення має бути невід’ємним цілим числом")
-            return
+            raise ValueError("Збільшення: невід'ємне ціле")
         self.number_of_units += increment
+        return self.number_of_units
+
 
 class Discount(Shop):
-    def __init__(self, shop_name, store_type,discount_products):
+    def __init__(self, shop_name, store_type, discount_products):
         super().__init__(shop_name, store_type)
-
         if not isinstance(discount_products, list):
-            print("discount_products повинен бути списком")
-            return
-
+            raise ValueError("discount_products: список")
         for item in discount_products:
             if not isinstance(item, str) or not item.strip():
-                print("У списку товарів зі знижкою можуть бути тільки непорожні рядки")
-                return
-
-        self.discount_products = discount_products
+                raise ValueError("Товари: непорожні рядки")
+        self.discount_products = [p.strip() for p in discount_products]
 
     def get_discount_products(self):
         if not self.discount_products:
-            print("Немає товарів зі знижкою")
-        else:
-            print("Товари зі знижкою:", ", ".join(self.discount_products))
+            return "Немає товарів зі знижкою"
+        return "Товари зі знижкою: " + ", ".join(self.discount_products)

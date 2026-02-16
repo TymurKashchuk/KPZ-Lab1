@@ -1,4 +1,4 @@
-from .validators import validate_string_no_digits, validate_age
+from validators import validate_string_no_digits, validate_age
 
 class Dog:
     mammal = True
@@ -15,14 +15,12 @@ class Dog:
     def bark(self):
         return f"{self.name}: Гав-гав!"
 
-
 class Labrador(Dog):
     def __init__(self, name, age):
         super().__init__(name, age, "Labrador")
 
     def fetch(self):
         return f"{self.name} принесла палку!"  # Видалено зайвий пробіл
-
 
 class GermanShepherd(Dog):
     nature = "відданий, охоронний"
@@ -33,7 +31,6 @@ class GermanShepherd(Dog):
     def guard(self):
         return f"{self.name} уважно охороняє територію!"  # Видалено дужки
 
-
 class Husky(Dog):
     nature = "активний, впертий"
 
@@ -42,7 +39,6 @@ class Husky(Dog):
 
     def howl(self):
         return f"{self.name}: Аууууууу!"  # Видалено дужки
-
 
 class Pets:
     def __init__(self):
